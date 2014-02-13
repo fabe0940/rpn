@@ -28,3 +28,23 @@ Fixed typos in `stack.h`.
 Created test code for the stack class in `main.cpp`.
 
 Removed code specific to the list testing from `list.cpp`.
+
+Created argument loop in `main.cpp`.
+
+Created argument parser in `main.cpp`.
+
+Added `--help` flag to the application.
+
+Added `--version` flag to the application.
+
+Added `VERSION_MAJOR`, `VERSION_MINOR`, and `VERSION_REV` constants
+to the project.
+
+Added `--debug` flag to the application.
+
+Added log() utility funtion to the application.
+
+Moved utility functions (log(), error(), usage(), help(), and
+version())to a seperate file.
+
+Moved project-global constants to `constants.h`.
