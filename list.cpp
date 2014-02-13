@@ -34,6 +34,10 @@ List::~List(void) {
 void List::print(void) {
 	NodePtr node;
 
+	/* Print list header */
+	cout << "list size: " << size << endl;
+
+	/* Traverse and print the list */
 	node = head;
 	while(node != NULL) {
 		cout << node->data << endl;
