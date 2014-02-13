@@ -1,17 +1,3 @@
-/*
-The stack class will have the following public methods:
-
-* push() - add an item to the stack.
-
-* pop() - remove an item from the stack.
-
-* peek() - look at the top item of the stack.
-
-* size() - return the size of the stack.
-
-* print() - print the contents of the stack.
-*/
-
 #include <iostream>
 
 #include "stack.h"

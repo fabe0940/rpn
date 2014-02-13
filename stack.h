@@ -8,7 +8,7 @@ class Stack {
 		Stack(void);
 		~Stack(void);
 		void print(void);
-		int size(void);
+		int getSize(void);
 		void push(double d);
 		double pop(void);
 		double peek(void);
