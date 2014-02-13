@@ -1,29 +1,32 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "list.h"
+#include "stack.h"
 
 using namespace std;
 
 int main(int argc, char** argv) {
 	int i;
-	List list;
+	Stack stack;
 
-	list.print();
+	stack.print();
 	cout << endl;
 
 	for(i = 0; i < 10; i++) {
-		list.addToFront(i);
+		cout << "pushing " << i << endl;
+		stack.push(i);
 	}
-	list.print();
+	stack.print();
 	cout << endl;
+
+	cout << "peeking " << stack.peek() << endl << endl;
 
 	for(i = 0; i < 10; i++) {
-		cout << list.removeFromFront() << endl;
+		cout << "popping " << stack.pop() << endl;
 	}
 	cout << endl;
 
-	list.print();
+	stack.print();
 	cout << endl;
 
 	exit(0);
