@@ -14,7 +14,7 @@ class List {
 			double data;
 			struct node* next;
 		};
-		typedef sturct node Node
+		typedef struct node Node;
 		typedef Node* NodePtr;
 		int size;
 		NodePtr head;
