@@ -1,7 +1,7 @@
 CC = g++
 WARNINGS = -ansi -pedantic -Wall -Wextra -D__USE_FIXED_PROTOTYPES__ -std=c++98
 CFLAGS = $(WARNINGS)
-OBJ = main.o stack.o list.o 
+OBJ = main.o stack.o list.o utility.o
 #LIBS = -lncurses
 APPLICATION_NAME = rpn
 
@@ -16,7 +16,7 @@ rebuild :
 $(APPLICATION_NAME) : $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(APPLICATION_NAME) $(LIBS)
 
-main.o : main.cpp
+main.o : main.cpp stack.h utility.h
 	$(CC) $(CFLAGS) -c main.cpp $(LIBS)
 
 stack.o : stack.cpp stack.h list.h
@@ -24,6 +24,9 @@ stack.o : stack.cpp stack.h list.h
 
 list.o : list.cpp list.h
 	$(CC) $(CFLAGS) -c list.cpp $(LIBS)
+
+utility.o : utility.cpp utility.h constants.h
+	$(CC) $(CFLAGS) -c utility.cpp $(LIBS)
 
 clean :
 	rm -f $(APPLICATION_NAME) $(OBJ)
