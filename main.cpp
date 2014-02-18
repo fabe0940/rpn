@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
+#include <string>
 
 #include "stack.h"
 #include "utility.h"
@@ -14,6 +15,8 @@ int DEBUG = 0;
 /* Run an interactive RPN calculator */
 int main(int argc, char** argv) {
 	int arg;
+	int running;
+	string input;
 
 	/* Parge arguments */
 	for(arg = 1; arg < argc; arg++) {
@@ -39,6 +42,21 @@ int main(int argc, char** argv) {
 			usage(argv[0]);
 			exit(0);
 		}
+	}
+
+	/* Initialize application */
+	running = 1;
+
+	/* Main loop */
+	while(running) {
+		/* Get input */
+		cin >> input;
+
+		/* Parse input */
+		cout << input[0] << endl;
+
+		/* Act on input */
+		running = input[0] != 'q';
 	}
 
 	exit(0);

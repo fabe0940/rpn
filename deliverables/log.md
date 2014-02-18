@@ -2,7 +2,7 @@ Assignment 4 Programming Log
 ============================
 
 13 February
-----------
+-----------
 
 Created project folder with basic makefile and git version contol.
 
@@ -48,3 +48,12 @@ Moved utility functions (log(), error(), usage(), help(), and
 version())to a seperate file.
 
 Moved project-global constants to `constants.h`.
+
+
+18 February
+-----------
+
+Added basic input parsing. Accepts input one word at a time and
+echos the first character of the word.
+
+
