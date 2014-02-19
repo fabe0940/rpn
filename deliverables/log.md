@@ -56,4 +56,8 @@ Moved project-global constants to `constants.h`.
 Added basic input parsing. Accepts input one word at a time and
 echos the first character of the word.
 
+Added operand recognition.
 
+Added operand stack.
+
+Added debugging output.

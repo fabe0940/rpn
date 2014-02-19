@@ -16,6 +16,7 @@ int DEBUG = 0;
 int main(int argc, char** argv) {
 	int arg;
 	int running;
+	int isNumeric;
 	string input;
 
 	/* Parge arguments */
@@ -53,9 +54,36 @@ int main(int argc, char** argv) {
 		cin >> input;
 
 		/* Parse input */
-		cout << input[0] << endl;
+		switch(input[0]) {
+			case '-':
+			case '.':
+			case '0':
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+			case '5':
+			case '6':
+			case '7':
+			case '8':
+			case '9':
+				isNumeric = 1;
+				break;
+			default:
+				isNumeric = 0;
+		}
 
 		/* Act on input */
+		if(isNumeric) {
+			operands.push(atof(input.c_str()));
+		} else {
+			cout << "operator: " << input << endl;
+		}
+
+		cout << "stack:" << endl;
+		operands.print();
+		cout << endl;
+
 		running = input[0] != 'q';
 	}
 
