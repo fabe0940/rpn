@@ -3,6 +3,7 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "constants.h"
 #include "stack.h"
@@ -21,7 +22,9 @@ int main(int argc, char** argv) {
 	int isNumeric;
 	double op1;
 	double op2;
+	string strBuffer;
 	string input;
+	stringstream* buffer = NULL;
 
 	/* Parge arguments */
 	for(arg = 1; arg < argc; arg++) {
@@ -69,71 +72,79 @@ int main(int argc, char** argv) {
 		}
 
 		/* Get input */
-		cin >> input;
+		getline(cin, strBuffer);
+		delete buffer;
+		buffer = new stringstream;
+		*buffer << strBuffer;
 
 		/* Parse input */
-		switch(input[0]) {
-			case '.':
-			case '0':
-			case '1':
-			case '2':
-			case '3':
-			case '4':
-			case '5':
-			case '6':
-			case '7':
-			case '8':
-			case '9':
-				isNumeric = 1;
-				break;
-			case '-':
-				isNumeric = (strlen(input.c_str()) != 1);
-				break;
-			default:
-				isNumeric = 0;
-		}
+		input = "";
+		while(*buffer >> input) {
+			cout << "INPUT: " << input << endl;
 
-		/* Act on input */
-		if(isNumeric) {
-			operands.push(atof(input.c_str()));
-		} else {
-			if(!strcmp(input.c_str(), "+")) {
-				op1 = operands.pop();
-				op2 = operands.pop();
-				operands.push(op2 + op1);
-			} else if(!strcmp(input.c_str(), "-")) {
-				op1 = operands.pop();
-				op2 = operands.pop();
-				operands.push(op2 - op1);
-			} else if(!strcmp(input.c_str(), "*")) {
-				op1 = operands.pop();
-				op2 = operands.pop();
-				operands.push(op2 * op1);
-			} else if(!strcmp(input.c_str(), "/")) {
-				op1 = operands.pop();
-				op2 = operands.pop();
-				operands.push(op2 / op1);
-			} else if(!strcmp(input.c_str(), "sq")) {
-				op1 = operands.pop();
-				operands.push(op1 * op1);
-			} else if(!strcmp(input.c_str(), "sqrt")) {
-				op1 = operands.pop();
-				operands.push(sqrt(op1));
-			} else if(!strcmp(input.c_str(), "dup")) {
-				operands.push(operands.peek());
-			} else if(!strcmp(input.c_str(), "swap")) {
-				op1 = operands.pop();
-				op2 = operands.pop();
-				operands.push(op1);
-				operands.push(op2);
-			} else if(!strcmp(input.c_str(), "ps")) {
-				cout << "stack contents:" << endl;
-				operands.print();
-			} else if(!strcmp(input.c_str(), "quit")) {
-				running = 0;
+			switch(input[0]) {
+				case '.':
+				case '0':
+				case '1':
+				case '2':
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
+					isNumeric = 1;
+					break;
+				case '-':
+					isNumeric = (strlen(input.c_str()) != 1);
+					break;
+				default:
+					isNumeric = 0;
+			}
+
+			/* Act on input */
+			if(isNumeric) {
+				operands.push(atof(input.c_str()));
 			} else {
-				log((char*) "unknown operator:");
-				log((char*) input.c_str());
+				if(!strcmp(input.c_str(), "+")) {
+					op1 = operands.pop();
+					op2 = operands.pop();
+					operands.push(op2 + op1);
+				} else if(!strcmp(input.c_str(), "-")) {
+					op1 = operands.pop();
+					op2 = operands.pop();
+					operands.push(op2 - op1);
+				} else if(!strcmp(input.c_str(), "*")) {
+					op1 = operands.pop();
+					op2 = operands.pop();
+					operands.push(op2 * op1);
+				} else if(!strcmp(input.c_str(), "/")) {
+					op1 = operands.pop();
+					op2 = operands.pop();
+					operands.push(op2 / op1);
+				} else if(!strcmp(input.c_str(), "sq")) {
+					op1 = operands.pop();
+					operands.push(op1 * op1);
+				} else if(!strcmp(input.c_str(), "sqrt")) {
+					op1 = operands.pop();
+					operands.push(sqrt(op1));
+				} else if(!strcmp(input.c_str(), "dup")) {
+					operands.push(operands.peek());
+				} else if(!strcmp(input.c_str(), "swap")) {
+					op1 = operands.pop();
+					op2 = operands.pop();
+					operands.push(op1);
+					operands.push(op2);
+				} else if(!strcmp(input.c_str(), "ps")) {
+					cout << "stack contents:" << endl;
+					operands.print();
+				} else if(!strcmp(input.c_str(), "quit")) {
+					running = 0;
+				} else {
+					log((char*) "unknown operator:");
+					log((char*) input.c_str());
+				}
 			}
 		}
 	}
