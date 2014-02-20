@@ -1,11 +1,12 @@
 /* utility.cpp
  *
- * CS 121 Section 2 Bolden    g++ (GCC) 4.4.7       Mason Fabel
- * 02/20                      x86_64 GNU/Linux      fabe0940@vandals.uidaho.edu
+ * Mason Fabel                fabe0940@vandals.uidaho.edu
+ * CS 121 Section 2 Bolden    g++ (GCC) 4.4.7
+ * 02/20                      x86_64 GNU/Linux 
  *
- * General utility funtion implementations.
+ * General, project-independant utility function implementation.
  *-----------------------------------------------------------------
- */ 
+ */
 
 #include <cstdlib>
 #include <iostream>
@@ -28,16 +29,17 @@ void help(char* name) {
 
 	cout << endl;
 	cout << "Options:" << endl
-		 << "  -h, --help            Print this message and exit" << endl
-		 << "  -v, --version         Print version information and exit" << endl
-		 << "  -D, --debug           Turn debugging mode on" << endl;
+		 << "  -h\tPrint this message and exit" << endl
+		 << "  -v\tPrint version information and exit" << endl
+		 << "  -D\tTurn debugging mode on" << endl;
 
 	return;
 }
 
 /* Print version information */
 void version(char* name) {
-	cout << name << " version " << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_REV << endl
+	cout << name << " version " << VERSION_MAJOR << "."
+		 << VERSION_MINOR << "." << VERSION_REV << endl
 		 << endl
 		 << "Written by Mason Fabel" << endl;
 
