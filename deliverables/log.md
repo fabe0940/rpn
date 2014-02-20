@@ -104,3 +104,5 @@ Fixed 'ps' implementation to match the format given on the
 assignment.
 
 Fixed operand detection to allow for negative operands.
+
+Fixed output prompt formatting.
