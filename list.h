@@ -1,3 +1,13 @@
+/* list.h
+ *
+ * Mason Fabel                fabe0940@vandals.uidaho.edu
+ * CS 121 Section 2 Bolden    g++ (GCC) 4.4.7
+ * 02/20                      x86_64 GNU/Linux 
+ *
+ * Linked list class definition.
+ *-----------------------------------------------------------------
+ */
+
 #ifndef _LIST_H_
 #define _LIST_H_
 

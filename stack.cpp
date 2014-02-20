@@ -1,3 +1,13 @@
+/* stack.cpp
+ *
+ * Mason Fabel                fabe0940@vandals.uidaho.edu
+ * CS 121 Section 2 Bolden    g++ (GCC) 4.4.7
+ * 02/20                      x86_64 GNU/Linux 
+ *
+ * Stack class implementation.
+ *-----------------------------------------------------------------
+ */
+
 #include <iostream>
 
 #include "stack.h"

@@ -1,3 +1,13 @@
+/* main.cpp
+ *
+ * Mason Fabel                fabe0940@vandals.uidaho.edu
+ * CS 121 Section 2 Bolden    g++ (GCC) 4.4.7
+ * 02/20                      x86_64 GNU/Linux 
+ *
+ * Assignment 4 - RPN calculator application
+ *-----------------------------------------------------------------
+ */
+
 #include <cstdlib>
 #include <cstring>
 #include <cmath>
@@ -26,20 +36,22 @@ int main(int argc, char** argv) {
 	string input;
 	stringstream* buffer = NULL;
 
-	/* Parge arguments */
+	if(DEBUG) log((char*) "Parsing arguments...");
+
+	/* Parse arguments */
 	for(arg = 1; arg < argc; arg++) {
 		/* Print argument being parsed */
 		if(DEBUG) log(argv[arg]);
 
-		if(!strcmp(argv[arg], "-h") || !strcmp(argv[arg], "--help")) {
+		if(!strcmp(argv[arg], "-h")) {
 			if(DEBUG) log((char*) "help option detected");
 			help(argv[0]);
 			exit(0);
-		} else if(!strcmp(argv[arg], "-v") || !strcmp(argv[arg], "--version")) {
+		} else if(!strcmp(argv[arg], "-v")) {
 			if(DEBUG) log((char*) "version option detected");
 			version(argv[0]);
 			exit(0);
-		} else if(!strcmp(argv[arg], "-D") || !strcmp(argv[arg], "--debug")) {
+		} else if(!strcmp(argv[arg], "-D")) {
 			if(DEBUG) log((char*) "debug option detected");
 			DEBUG = 1;
 		} else {
@@ -53,6 +65,7 @@ int main(int argc, char** argv) {
 	}
 
 	/* Initialize application */
+	if(DEBUG) log((char*) "Initializing variables...");
 	op1 = 0;
 	op2 = 0;
 	input = "";
@@ -60,7 +73,9 @@ int main(int argc, char** argv) {
 	running = 1;
 
 	/* Print informative header */
-	cout << "RPN Calculator v" << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_REV << " by Mason Fabel" << endl;
+	cout << "RPN Calculator v" << VERSION_MAJOR << "."
+		 << VERSION_MINOR << "." << VERSION_REV << " by Mason Fabel"
+		 << endl;
 
 	/* Main loop */
 	while(running) {
@@ -72,6 +87,7 @@ int main(int argc, char** argv) {
 		}
 
 		/* Get input */
+		if(DEBUG) log((char*) "Getting input line...");
 		getline(cin, strBuffer);
 		delete buffer;
 		buffer = new stringstream;
@@ -80,7 +96,10 @@ int main(int argc, char** argv) {
 		/* Parse input */
 		input = "";
 		while(*buffer >> input) {
-			cout << "INPUT: " << input << endl;
+			if(DEBUG) {
+				log((char*) "Parsing word:");
+				log((char*) input.c_str());
+			}
 
 			switch(input[0]) {
 				case '.':
@@ -103,43 +122,68 @@ int main(int argc, char** argv) {
 					isNumeric = 0;
 			}
 
+			if(DEBUG) {
+				log((char*) "Is it numeric?");
+				if(isNumeric) {
+					log((char*) "yes.");
+				} else {
+					log((char*) "no.");
+				}
+			}
+
 			/* Act on input */
 			if(isNumeric) {
+				if(DEBUG) log((char*) "Pushing operand...");
 				operands.push(atof(input.c_str()));
 			} else {
+				if(DEBUG) {
+					log((char*) "Parsing operator:");
+					log((char*) input.c_str());
+				}
+
 				if(!strcmp(input.c_str(), "+")) {
+					if(DEBUG) log((char*) "Addition");
 					op1 = operands.pop();
 					op2 = operands.pop();
 					operands.push(op2 + op1);
 				} else if(!strcmp(input.c_str(), "-")) {
+					if(DEBUG) log((char*) "Subtraction");
 					op1 = operands.pop();
 					op2 = operands.pop();
 					operands.push(op2 - op1);
 				} else if(!strcmp(input.c_str(), "*")) {
+					if(DEBUG) log((char*) "Multiplication");
 					op1 = operands.pop();
 					op2 = operands.pop();
 					operands.push(op2 * op1);
 				} else if(!strcmp(input.c_str(), "/")) {
+					if(DEBUG) log((char*) "Division");
 					op1 = operands.pop();
 					op2 = operands.pop();
 					operands.push(op2 / op1);
 				} else if(!strcmp(input.c_str(), "sq")) {
+					if(DEBUG) log((char*) "Square");
 					op1 = operands.pop();
 					operands.push(op1 * op1);
 				} else if(!strcmp(input.c_str(), "sqrt")) {
+					if(DEBUG) log((char*) "Square Root");
 					op1 = operands.pop();
 					operands.push(sqrt(op1));
 				} else if(!strcmp(input.c_str(), "dup")) {
+					if(DEBUG) log((char*) "Duplication");
 					operands.push(operands.peek());
 				} else if(!strcmp(input.c_str(), "swap")) {
+					if(DEBUG) log((char*) "Swap");
 					op1 = operands.pop();
 					op2 = operands.pop();
 					operands.push(op1);
 					operands.push(op2);
 				} else if(!strcmp(input.c_str(), "ps")) {
+					if(DEBUG) log((char*) "Print Stack");
 					cout << "stack contents:" << endl;
 					operands.print();
 				} else if(!strcmp(input.c_str(), "quit")) {
+					if(DEBUG) log((char*) "Quit");
 					running = 0;
 				} else {
 					log((char*) "unknown operator:");
@@ -149,5 +193,6 @@ int main(int argc, char** argv) {
 		}
 	}
 
+	/* Exit without errors */
 	exit(0);
 }
