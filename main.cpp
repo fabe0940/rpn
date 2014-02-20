@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+#include "constants.h"
 #include "stack.h"
 #include "utility.h"
 
@@ -55,17 +56,23 @@ int main(int argc, char** argv) {
 	isNumeric = 0;
 	running = 1;
 
+	/* Print informative header */
+	cout << "RPN Calculator v" << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_REV << " by Mason Fabel" << endl;
+
 	/* Main loop */
 	while(running) {
 		/* Print status */
-		cout << "RPN " << operands.peek() << " > ";
+		if(operands.getSize()) {
+			cout << "RPN " << operands.peek() << " > ";
+		} else {
+			cout << "RPN (empty) > ";
+		}
 
 		/* Get input */
 		cin >> input;
 
 		/* Parse input */
 		switch(input[0]) {
-			case '-':
 			case '.':
 			case '0':
 			case '1':
@@ -78,6 +85,9 @@ int main(int argc, char** argv) {
 			case '8':
 			case '9':
 				isNumeric = 1;
+				break;
+			case '-':
+				isNumeric = (strlen(input.c_str()) != 1);
 				break;
 			default:
 				isNumeric = 0;
@@ -117,6 +127,7 @@ int main(int argc, char** argv) {
 				operands.push(op1);
 				operands.push(op2);
 			} else if(!strcmp(input.c_str(), "ps")) {
+				cout << "stack contents:" << endl;
 				operands.print();
 			} else if(!strcmp(input.c_str(), "quit")) {
 				running = 0;

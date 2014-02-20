@@ -2,6 +2,7 @@
 
 #include "stack.h"
 #include "list.h"
+#include "utility.h"
 
 using namespace std;
 
@@ -44,7 +45,11 @@ double Stack::peek(void) {
 	double result;
 
 	/* Get the top item from the stack */
-	result = pop();
+	if(getSize()) {
+		result = pop();
+	} else {
+		error((char*) "Stack::peek - no items on stack");
+	}
 
 	/* Return the item to the top of the stack */
 	push(result);

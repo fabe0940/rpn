@@ -91,3 +91,16 @@ Added 'quit' operator.
 Note that I have not tested any of these operators. It runs
 without crashing, but correct behaviour is not guarenteed.
 Or expected.
+
+
+20 February
+-----------
+
+Fixed stack pop bug.
+
+Added program header.
+
+Fixed 'ps' implementation to match the format given on the
+assignment.
+
+Fixed operand detection to allow for negative operands.
