@@ -106,3 +106,5 @@ assignment.
 Fixed operand detection to allow for negative operands.
 
 Fixed output prompt formatting.
+
+Added commenting to files.

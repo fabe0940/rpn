@@ -1,3 +1,12 @@
+/* list.cpp
+ *
+ * CS 121 Section 2 Bolden    g++ (GCC) 4.4.7       Mason Fabel
+ * 02/20                      x86_64 GNU/Linux      fabe0940@vandals.uidaho.edu
+ *
+ * Linked list class implementation
+ *-----------------------------------------------------------------
+ */ 
+
 #include <cstdlib>
 #include <iostream>
 

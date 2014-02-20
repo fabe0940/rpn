@@ -1,3 +1,12 @@
+/* constancts.h
+ *
+ * CS 121 Section 2 Bolden    g++ (GCC) 4.4.7       Mason Fabel
+ * 02/20                      x86_64 GNU/Linux      fabe0940@vandals.uidaho.edu
+ *
+ * Project-wide constants.
+ *-----------------------------------------------------------------
+ */ 
+
 #ifndef _CONSTANTS_H_
 #define _CONSTANTS_H_
 
