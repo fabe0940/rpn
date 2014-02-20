@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <cstring>
+#include <cmath>
 #include <iostream>
+#include <string>
 
 #include "stack.h"
 #include "utility.h"
@@ -14,6 +16,11 @@ int DEBUG = 0;
 /* Run an interactive RPN calculator */
 int main(int argc, char** argv) {
 	int arg;
+	int running;
+	int isNumeric;
+	double op1;
+	double op2;
+	string input;
 
 	/* Parge arguments */
 	for(arg = 1; arg < argc; arg++) {
@@ -38,6 +45,85 @@ int main(int argc, char** argv) {
 			}
 			usage(argv[0]);
 			exit(0);
+		}
+	}
+
+	/* Initialize application */
+	op1 = 0;
+	op2 = 0;
+	input = "";
+	isNumeric = 0;
+	running = 1;
+
+	/* Main loop */
+	while(running) {
+		/* Print status */
+		cout << "RPN " << operands.peek() << " > ";
+
+		/* Get input */
+		cin >> input;
+
+		/* Parse input */
+		switch(input[0]) {
+			case '-':
+			case '.':
+			case '0':
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+			case '5':
+			case '6':
+			case '7':
+			case '8':
+			case '9':
+				isNumeric = 1;
+				break;
+			default:
+				isNumeric = 0;
+		}
+
+		/* Act on input */
+		if(isNumeric) {
+			operands.push(atof(input.c_str()));
+		} else {
+			if(!strcmp(input.c_str(), "+")) {
+				op1 = operands.pop();
+				op2 = operands.pop();
+				operands.push(op2 + op1);
+			} else if(!strcmp(input.c_str(), "-")) {
+				op1 = operands.pop();
+				op2 = operands.pop();
+				operands.push(op2 - op1);
+			} else if(!strcmp(input.c_str(), "*")) {
+				op1 = operands.pop();
+				op2 = operands.pop();
+				operands.push(op2 * op1);
+			} else if(!strcmp(input.c_str(), "/")) {
+				op1 = operands.pop();
+				op2 = operands.pop();
+				operands.push(op2 / op1);
+			} else if(!strcmp(input.c_str(), "sq")) {
+				op1 = operands.pop();
+				operands.push(op1 * op1);
+			} else if(!strcmp(input.c_str(), "sqrt")) {
+				op1 = operands.pop();
+				operands.push(sqrt(op1));
+			} else if(!strcmp(input.c_str(), "dup")) {
+				operands.push(operands.peek());
+			} else if(!strcmp(input.c_str(), "swap")) {
+				op1 = operands.pop();
+				op2 = operands.pop();
+				operands.push(op1);
+				operands.push(op2);
+			} else if(!strcmp(input.c_str(), "ps")) {
+				operands.print();
+			} else if(!strcmp(input.c_str(), "quit")) {
+				running = 0;
+			} else {
+				log((char*) "unknown operator:");
+				log((char*) input.c_str());
+			}
 		}
 	}
 

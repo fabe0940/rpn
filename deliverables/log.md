@@ -2,7 +2,7 @@ Assignment 4 Programming Log
 ============================
 
 13 February
-----------
+-----------
 
 Created project folder with basic makefile and git version contol.
 
@@ -48,3 +48,46 @@ Moved utility functions (log(), error(), usage(), help(), and
 version())to a seperate file.
 
 Moved project-global constants to `constants.h`.
+
+
+18 February
+-----------
+
+Added basic input parsing. Accepts input one word at a time and
+echos the first character of the word.
+
+Added operand recognition.
+
+Added operand stack.
+
+Added debugging output.
+
+
+19 February
+-----------
+
+Added basic operator support.
+
+Added '+' operator.
+
+Added '-' operator.
+
+Added '*' operator.
+
+Added '/' operator.
+
+Added 'sq' operator.
+
+Added 'sqrt' operator.
+
+Added 'dup' operator.
+
+Added 'swap' operator.
+
+Added 'ps' operator.
+
+Added 'quit' operator.
+
+Note that I have not tested any of these operators. It runs
+without crashing, but correct behaviour is not guarenteed.
+Or expected.
