@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <cstring>
+#include <cmath>
 #include <iostream>
 #include <string>
 
@@ -17,6 +18,8 @@ int main(int argc, char** argv) {
 	int arg;
 	int running;
 	int isNumeric;
+	double op1;
+	double op2;
 	string input;
 
 	/* Parge arguments */
@@ -46,10 +49,17 @@ int main(int argc, char** argv) {
 	}
 
 	/* Initialize application */
+	op1 = 0;
+	op2 = 0;
+	input = "";
+	isNumeric = 0;
 	running = 1;
 
 	/* Main loop */
 	while(running) {
+		/* Print status */
+		cout << "RPN " << operands.peek() << " > ";
+
 		/* Get input */
 		cin >> input;
 
@@ -77,14 +87,44 @@ int main(int argc, char** argv) {
 		if(isNumeric) {
 			operands.push(atof(input.c_str()));
 		} else {
-			cout << "operator: " << input << endl;
+			if(!strcmp(input.c_str(), "+")) {
+				op1 = operands.pop();
+				op2 = operands.pop();
+				operands.push(op2 + op1);
+			} else if(!strcmp(input.c_str(), "-")) {
+				op1 = operands.pop();
+				op2 = operands.pop();
+				operands.push(op2 - op1);
+			} else if(!strcmp(input.c_str(), "*")) {
+				op1 = operands.pop();
+				op2 = operands.pop();
+				operands.push(op2 * op1);
+			} else if(!strcmp(input.c_str(), "/")) {
+				op1 = operands.pop();
+				op2 = operands.pop();
+				operands.push(op2 / op1);
+			} else if(!strcmp(input.c_str(), "sq")) {
+				op1 = operands.pop();
+				operands.push(op1 * op1);
+			} else if(!strcmp(input.c_str(), "sqrt")) {
+				op1 = operands.pop();
+				operands.push(sqrt(op1));
+			} else if(!strcmp(input.c_str(), "dup")) {
+				operands.push(operands.peek());
+			} else if(!strcmp(input.c_str(), "swap")) {
+				op1 = operands.pop();
+				op2 = operands.pop();
+				operands.push(op1);
+				operands.push(op2);
+			} else if(!strcmp(input.c_str(), "ps")) {
+				operands.print();
+			} else if(!strcmp(input.c_str(), "quit")) {
+				running = 0;
+			} else {
+				log((char*) "unknown operator:");
+				log((char*) input.c_str());
+			}
 		}
-
-		cout << "stack:" << endl;
-		operands.print();
-		cout << endl;
-
-		running = input[0] != 'q';
 	}
 
 	exit(0);

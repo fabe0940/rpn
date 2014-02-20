@@ -61,3 +61,33 @@ Added operand recognition.
 Added operand stack.
 
 Added debugging output.
+
+
+19 February
+-----------
+
+Added basic operator support.
+
+Added '+' operator.
+
+Added '-' operator.
+
+Added '*' operator.
+
+Added '/' operator.
+
+Added 'sq' operator.
+
+Added 'sqrt' operator.
+
+Added 'dup' operator.
+
+Added 'swap' operator.
+
+Added 'ps' operator.
+
+Added 'quit' operator.
+
+Note that I have not tested any of these operators. It runs
+without crashing, but correct behaviour is not guarenteed.
+Or expected.
