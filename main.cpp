@@ -80,6 +80,7 @@ int main(int argc, char** argv) {
 	/* Main loop */
 	while(running) {
 		/* Print status */
+		if(DEBUG) log((char*) "Getting input line...");
 		if(operands.getSize()) {
 			cout << "RPN " << operands.peek() << " > ";
 		} else {
@@ -87,7 +88,6 @@ int main(int argc, char** argv) {
 		}
 
 		/* Get input */
-		if(DEBUG) log((char*) "Getting input line...");
 		getline(cin, strBuffer);
 		delete buffer;
 		buffer = new stringstream;

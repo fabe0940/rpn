@@ -1,0 +1,434 @@
+commit 2ce9e38abbe749e78af62e2045093258fe43c263
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 20 14:08:13 2014 -0800
+
+    Updated source formatting
+    
+    Updated the formatting of my source files to ensure they fit within
+    the width of a printed page from the university printer.
+
+ constants.h |   11 ++++++-----
+ list.cpp    |    9 +++++----
+ list.h      |    7 ++++---
+ main.cpp    |   55 +++++++++++++++++++++++++++++++++++++++++++++----------
+ stack.cpp   |    7 ++++---
+ stack.h     |    7 ++++---
+ utility.cpp |   18 ++++++++++--------
+ utility.h   |    9 +++++----
+ 8 files changed, 83 insertions(+), 40 deletions(-)
+
+commit 7fe4ff063fca71645f7b2e59201590405b447845
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 20 13:45:29 2014 -0800
+
+    Commented all files
+    
+    Added comment headers and updated comments in all source files.
+    
+    * *.[cpp|h] - Updated commenting.
+
+ constants.h         |    9 +++++++++
+ deliverables/log.md |    2 ++
+ list.cpp            |    9 +++++++++
+ list.h              |    9 +++++++++
+ main.cpp            |   10 ++++++++++
+ stack.cpp           |    9 +++++++++
+ stack.h             |    9 +++++++++
+ utility.cpp         |    9 +++++++++
+ utility.h           |    9 +++++++++
+ 9 files changed, 75 insertions(+), 0 deletions(-)
+
+commit 0af789347ce5116aac018f5d20ef122e1366a30f
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 20 13:28:20 2014 -0800
+
+    Fixed interface formatting.
+    
+    Version 1.1.0
+    
+    Fixed the interface format to match that of the assignment.
+    
+    Rewrote the input parser around std::getline and std::stringstream
+    in order to facilitate the new input format. I now accept input
+    from the user line by line, move that input into a stringstream,
+    and then parsed the stringstream one word at a time using my old
+    parsing code.
+    
+    * main.cpp - Rewrote input parsing system.
+    
+    * deliverables/log.md - Updated progress log.
+    
+    * constants.h - Updated version to 1.1.0.
+
+ constants.h         |    2 +-
+ deliverables/log.md |    2 +
+ main.cpp            |  133 +++++++++++++++++++++++++++-----------------------
+ 3 files changed, 75 insertions(+), 62 deletions(-)
+
+commit 7fce8bef5bcf1a5f447e01c74b3b8273a663113e
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 20 12:39:19 2014 -0800
+
+    VERSION 1.0.0
+    
+    This is a stable version with all features implemented. Bugs may
+    still exist, but they aren't obvious. Also, the interface is ugly
+    and clunky, but perfectly funtional.
+
+ constants.h |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 73934e2314542a64f2adea73fbd389dd816d12df
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 20 12:34:39 2014 -0800
+
+    Fixed assorted bugs
+    
+    Fixed assorted bugs with the calculator programs.
+    
+    The first main issue was that a 0 appeard at the top of the stack
+    whenever the program was launched. I traced this to a bug in the
+    Stack.peek() code, where a 0 was generated and pushed if we tried
+    to peek at an empty stack. This was a pretty easy fix, a few checks
+    against Stack.getSize() and everything was golden.
+    
+    The second major issue was the inability to use the '-' operator,
+    as anything starting with a '-' was interpreted as a negative
+    operand. By checking the strlen() of the input string, I was able
+    to differentiate between "-" (length of 1), and "-n" (length of
+    something other than 1).
+    
+    The final issue was various formatting tweaks necessary to match
+    the required format for the assignment.
+    
+    * main.cpp - Fixed '-' bug. Fixed formatting inconsistencies.
+    
+    * stack.cpp - Fixed Stack.pop() bug.
+
+ deliverables/log.md |   13 +++++++++++++
+ main.cpp            |   15 +++++++++++++--
+ stack.cpp           |    7 ++++++-
+ 3 files changed, 32 insertions(+), 3 deletions(-)
+
+commit 4f13fd1e0a4aecedc880fb075a025959d2cecea4
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Wed Feb 19 17:59:21 2014 -0800
+
+    Implemented operator support
+    
+    Implemented support for all of the basic operators this calculator
+    will support. These are  '+', '-', '*', '/', 'sq' (square),
+    'sqrt' (square root), 'dup' (duplicate), 'swap', 'ps' (print stack),
+    and 'quit'.
+    
+    Note that this is an UNSTABLE commit; the project builds without
+    error and runs without crashing, but there has been NO bug hunting
+    or testing. This is most likely WRONG, but it's better than it was.
+    Maybe.
+    
+    * main.cpp - Implemented all operators.
+    
+    * deliverables/log.md - Documented changes.
+
+ deliverables/log.md |   30 ++++++++++++++++++++++++++++
+ main.cpp            |   54 ++++++++++++++++++++++++++++++++++++++++++++------
+ 2 files changed, 77 insertions(+), 7 deletions(-)
+
+commit 41407327319575a8367b5157122d024259adeb89
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Tue Feb 18 16:05:13 2014 -0800
+
+    Added operand parsing
+    
+    Added the ability to distinguish operands from operators. Operands
+    are pushed onto the operand stack, while operators are merely
+    echoed. Then the current state is outputed.
+    
+    * main.cpp - Added operand parsing and operand stack.
+    
+    * deliverables/log.md - Updated progress log.
+
+ deliverables/log.md |    4 ++++
+ main.cpp            |   30 +++++++++++++++++++++++++++++-
+ 2 files changed, 33 insertions(+), 1 deletions(-)
+
+commit 317fb5e44de35a3608bbf69403423508f166cdce
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Tue Feb 18 15:55:49 2014 -0800
+
+    Created basic input parser
+    
+    Created a basic input parser which accpets input one word at a time
+    and then echos the first character of the word back to the user.
+    
+    * main.cpp - Created input parser.
+    
+    * deliverables/log.md - Updated progress log.
+
+ deliverables/log.md |   11 ++++++++++-
+ main.cpp            |   18 ++++++++++++++++++
+ 2 files changed, 28 insertions(+), 1 deletions(-)
+
+commit 386934034e00f7d57084ddfbf49bbc3b86912d90
+Merge: f965f43 91a280d
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 15:30:26 2014 -0800
+
+    Merge branch 'args' into develop
+
+commit 91a280d43876ff7e2767f21963b8c7682d426143
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 15:25:32 2014 -0800
+
+    Reorganized project
+    
+    Moved utility functions to utility.h/utility.cpp and moved global
+    constants to constants.h. This removes unneccessary bloat from
+    the main file, and cleans up the project considerably.
+    
+    * Makefile - Updated build instructions to relfect file refactoring.
+    
+    * constants.h - Containts all global constants. Right now, these are
+      VERSION_MAJOR, VERSION_MINOR, and VERSION_REV.
+    
+    * deliverables/log.md - Logged all changes.
+    
+    * main.cpp - Removed unneccesary functions and constants and placed
+      them into more appropriate files.
+    
+    * utility.h - Created a header for the various utility funtions.
+    
+    * utility.cpp - Moved the implementation of the utility functions,
+      specifically log(), error(), usage(), help(), and version() here.
+
+ Makefile            |    7 +++-
+ constants.h         |    8 +++++
+ deliverables/log.md |   20 +++++++++++++
+ main.cpp            |   77 ++++++++-------------------------------------------
+ utility.cpp         |   50 +++++++++++++++++++++++++++++++++
+ utility.h           |   10 ++++++
+ 6 files changed, 105 insertions(+), 67 deletions(-)
+
+commit 9964d54bdbb707265341a8f9750fe3294f44c80f
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 14:59:11 2014 -0800
+
+    Created full argument parser
+    
+    Added the ability to parse arbitrary command line arguments in an
+    arbitrary order to the application.
+    
+    Added --version argument and message.
+    
+    Added --debug argument and option.
+    
+    Added log() utility funtion.
+    
+    * main.cpp - Implemented command line argument parser.
+
+ main.cpp |   69 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++---
+ 1 files changed, 65 insertions(+), 4 deletions(-)
+
+commit f965f43cfa184999358cfa52ecc15d86e6714ac4
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 14:29:03 2014 -0800
+
+    Created basic program layout.
+    
+    Created the basic layout for the calculator program. This includes
+    the global stack, and basic error handling functions common to
+    every application.
+    
+    * main.cpp - Added usage() and error() functions. Added argc check.
+      Added global stack.
+
+ main.cpp |   29 +++++++++++++++++++++++++++++
+ 1 files changed, 29 insertions(+), 0 deletions(-)
+
+commit d11dedada30887ac304ec5289775455d60aca25b
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 14:17:06 2014 -0800
+
+    Cleaned up working directory.
+    
+    Cleaned up old files and test code.
+    
+    * main.cpp - removed stack test code.
+    
+    * deliverables/log.md - added log file to the project.
+
+ deliverables/log.md  |   30 ++++++++++++++++++++++++++++++
+ main.cpp             |   25 -------------------------
+ 2 files changed, 30 insertions(+), 25 deletions(-)
+
+commit 868f812f0870274f808f72cf6a000e741ead4d69
+Merge: cb71482 e055657
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 14:13:39 2014 -0800
+
+    Merge branch 'stack' into develop
+
+commit e055657f7a93527ce12c88952f29dfbc9c087d02
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 14:11:29 2014 -0800
+
+    Created stack test code
+    
+    Created code to test all the public methods of the new stack class.
+    
+    * main.cpp - added code to test all methods for the stack class.
+    
+    * list.cpp - removed some debugging code left over from the list
+      class tests.
+
+ list.cpp |    3 ---
+ main.cpp |   17 ++++++++++-------
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+
+commit 76f163efd5cab0618d4aa059f27a01ac616de01c
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 14:09:49 2014 -0800
+
+    Updated makefile
+    
+    * Makefile - added build instructions for the stack class.
+
+ Makefile |    5 ++++-
+ 1 files changed, 4 insertions(+), 1 deletions(-)
+
+commit 845a629af28863ba3608628e2c883ff7524c7419
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 14:08:57 2014 -0800
+
+    Fixed typo in stack header
+    
+    Fixed a misspelling of the getSize() method in `stack.h`.
+
+ stack.cpp |   14 --------------
+ stack.h   |    2 +-
+ 2 files changed, 1 insertions(+), 15 deletions(-)
+
+commit 0b8e0289df0bd28ab113d4ee2f5515b3bbacc02e
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 14:00:23 2014 -0800
+
+    Created stack class
+    
+    Created and implemented a basic stack class built on top of the
+    linked list class.
+    
+    * list.h - created the class header for the stack class.
+    
+    * list.cpp - implemented the functionality of the stack class by
+      wrapping calls to the list class.
+
+ stack.cpp |   67 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ stack.h   |   19 +++++++++++++++++
+ 2 files changed, 86 insertions(+), 0 deletions(-)
+
+commit cb7148286782c2328f23fff7e956bd7c04d3314c
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 13:46:47 2014 -0800
+
+    Created list test code
+    
+    * list.cpp - added size to the print() method.
+    
+    * main.cpp - added code to test all features of the List class.
+
+ list.cpp |    4 ++++
+ main.cpp |   22 +++++++++++++++++++++-
+ 2 files changed, 25 insertions(+), 1 deletions(-)
+
+commit 89abd6bd666099b4af90f734a9ac1fe2617a6142
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 13:38:45 2014 -0800
+
+    Fixed typos in `list.h`
+    
+    * list.h - fixed missing semicolon and misspelled struct keyword.
+
+ list.h |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 2df072e436829890e2077834746ee10a91639d44
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 13:35:46 2014 -0800
+
+    Created linked list class
+    
+    Created and implement a basic linked list class.
+    
+    * Created `list.h` - created class header for a linked list.
+    
+    * Created `list.cpp` - implemented the list class header.
+
+ Makefile |    5 ++-
+ list.cpp |   98 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ list.h   |   23 ++++++++++++++
+ 3 files changed, 125 insertions(+), 1 deletions(-)
+
+commit 70609cdf02d4059950866b5ac584dc4b368fc687
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Thu Feb 13 13:13:09 2014 -0800
+
+    Created design documentation
+    
+    Wrote out a basic description of the project in deliverables/design.md.
+
+ deliverables/design.md  |   40 ++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 40 insertions(+), 0 deletions(-)
+
+commit 7478ac53b1e08cccab2602e86e08dcab6faf3ba5
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Wed Feb 12 13:10:55 2014 -0800
+
+    Created readme
+    
+    * README.md - created a simple readme which describes the build
+      process, run process, and general purpose of this application.
+
+ README.md |   54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 files changed, 54 insertions(+), 0 deletions(-)
+
+commit 16a5d8b632d7da224b059c0b5bc6650a120b756b
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Wed Feb 12 13:02:49 2014 -0800
+
+    Created deliverables
+    
+    Created the files necessary to turn in this assignment.
+    
+    * deliverables/design.txt - A description of how I will create this
+      application.
+    
+    * deliverables/log.txt - A log of my actions and thoughs as I am
+      coding this application.
+    
+    * deliverables/output.txt - A transcript of a sample run of the
+      application.
+    
+    * deliverables/source.txt - A copy of the source code formatted
+      for the printer in JEB312.
+
+ 0 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 9fdbb68bca3eab64e8ebcdbfbb999e76997dbaa4
+Author: Mason Fabel <mason.fabel@gmail.com>
+Date:   Wed Feb 12 12:58:42 2014 -0800
+
+    Initial commit
+    
+    Created a basic "hello world" application.
+    
+    * main.cpp - created basic "hello world" program.
+    
+    * Makefile - created basic build instructions.
+    
+    * .gitignore - created git ignore file for .o and .swp files along
+      with compiled binaries.
+
+ .gitignore |    3 +++
+ Makefile   |   23 +++++++++++++++++++++++
+ main.cpp   |   10 ++++++++++
+ 3 files changed, 36 insertions(+), 0 deletions(-)

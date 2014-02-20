@@ -1,0 +1,107 @@
+Script started on Thu 20 Feb 2014 02:12:46 PM PST
+bash-4.1$ ls -l
+total 15360
+-rw-------. 1 fabe0940 domain_users   411 Feb 20 14:09 constants.h
+drwx------. 2 fabe0940 domain_users     0 Feb 20 14:09 deliverables
+-rw-------. 1 fabe0940 domain_users  1714 Feb 20 14:09 list.cpp
+-rw-------. 1 fabe0940 domain_users   615 Feb 20 14:09 list.h
+-rw-------. 1 fabe0940 domain_users  3640 Feb 20 14:10 list.o
+-rw-------. 1 fabe0940 domain_users  4553 Feb 20 14:12 main.cpp
+-rw-------. 1 fabe0940 domain_users 13368 Feb 20 14:11 main.o
+-rw-------. 1 fabe0940 domain_users   702 Feb 13 15:30 Makefile
+-rw-------. 1 fabe0940 domain_users  1498 Feb 12 13:10 README.md
+-rwx------. 1 fabe0940 domain_users 19088 Feb 20 14:11 rpn
+-rw-------. 1 fabe0940 domain_users  1162 Feb 20 14:09 stack.cpp
+-rw-------. 1 fabe0940 domain_users   518 Feb 20 14:09 stack.h
+-rw-------. 1 fabe0940 domain_users  3864 Feb 20 14:10 stack.o
+-rw-------. 1 fabe0940 domain_users  1241 Feb 20 14:09 utility.cpp
+-rw-------. 1 fabe0940 domain_users   443 Feb 20 14:09 utility.h
+-rw-------. 1 fabe0940 domain_users  5256 Feb 20 14:10 utility.o
+bash-4.1$ ./rpn -h
+Usage: ./rpn
+
+Options:
+  -h	Print this message and exit
+  -v	Print version information and exit
+  -D	Turn debugging mode on
+bash-4.1$ ./rpn -v
+./rpn version 1.1.1
+
+Written by Mason Fabel
+bash-4.1$ ./rpn -D
+Initializing variables...
+RPN Calculator v1.1.1 by Mason Fabel
+Getting input line...
+RPN (empty) > 1 1 +
+Parsing word:
+1
+Is it numeric?
+yes.
+Pushing operand...
+Parsing word:
+1
+Is it numeric?
+yes.
+Pushing operand...
+Parsing word:
++
+Is it numeric?
+no.
+Parsing operator:
++
+Addition
+Getting input line...
+RPN 2 > quit
+Parsing word:
+quit
+Is it numeric?
+no.
+Parsing operator:
+quit
+Quit
+bash-4.1$ ./rpn
+RPN Calculator v1.1.1 by Mason Fabel
+RPN (empty) > 2 3 +
+RPN 5 > 4 -
+RPN 1 > 2 /
+RPN 0.5 > 6 *
+RPN 3 > sq
+RPN 9 > 7 +
+RPN 16 > sqrt
+RPN 4 > dup -
+RPN 0 > 2 3
+RPN 3 > ps
+stack contents:
+3
+2
+0
+RPN 3 > swap
+RPN 2 > ps
+stack contents:
+2
+3
+0
+RPN 2 > +
+RPN 5 > +
+RPN 5 > ps
+stack contents:
+5
+RPN 5 > quit
+bash-4.1$ ./rpn
+RPN Calculator v1.1.1 by Mason Fabel
+RPN (empty) > 5.2 3.1 - sq 7.9 2.4 - sq + sqrt
+RPN 5.88727 > ps
+stack contents:
+5.88727
+RPN 5.88727 > quit
+bash-4.1$ ./rpn
+RPN Calculator v1.1.1 by Mason Fabel
+RPN (empty) > 4.2 sq 5.33 sq + sqrt
+RPN 6.78593 > ps
+stack contents:
+6.78593
+RPN 6.78593 > quit
+bash-4.1$ exit
+exit
+
+Script done on Thu 20 Feb 2014 02:15:27 PM PST
